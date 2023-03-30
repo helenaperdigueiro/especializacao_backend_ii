@@ -1,0 +1,17 @@
+server:
+  port: 9091
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          provedor-digitalhouse:
+            issuer-uri: http://localhost:8080/realms/digitalhouse
+        registration:
+          keycloak-spring-gateway-client:
+            provider: provedor-digitalhouse
+            client-id: spring-gateway-client-aula03
+            client-secret: YpX0PRAGp4BZ3DfJUhOoRFjQflr8h5gJ
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/keycloak'

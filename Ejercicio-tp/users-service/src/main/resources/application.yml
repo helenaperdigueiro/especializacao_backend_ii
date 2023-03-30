@@ -1,0 +1,40 @@
+dh:
+  keycloak:
+    realm: dh
+    serverUrl: http://localhost:8082/
+    clientId: dh-client
+    clientSecret: Fe1EpGaBtKFZOlcNKj1CSSyLeRaygET6
+spring:
+  application:
+    name: users-service
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak-registration:
+            provider: keycloak-provider
+            client-id: dh-client-avaliacao-i
+            authorization-grant-type: client_credentials
+            client-secret: EnxrBRK8aZW1nTvlTkgKsgePFXMfRMPi
+        provider:
+          keycloak-provider:
+            token-uri: http://localhost:8082/realms/dh/protocol/openid-connect/token
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/dh
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.http: DEBUG
+
+server:
+  port: 8084
